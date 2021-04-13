@@ -1,8 +1,8 @@
-import Router from './routers'
+import Layout from './layouts/Layout';
 
 function App() {
   return (
-    <Router/>
+    <Layout/>
   );
 }
 

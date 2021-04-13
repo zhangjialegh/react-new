@@ -1,19 +1,18 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from '../pages/home/Home'
-import Todo from '../pages/todo/Todo'
+import { Switch, Route, Redirect } from "react-router-dom";
+import routes from './routes'
 
 
 export default function Router() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/todo">
-          <Todo />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Redirect exact path="/" to={routes[0].path} />
+      {
+        routes.map((route, index) => {
+          return <Route path={route.path} key={route.path + index} render={props => (
+            <route.component {...props} routes={route.routes}/>
+          )} />
+        })
+      }
+    </Switch>
   )
 }

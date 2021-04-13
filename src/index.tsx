@@ -1,17 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import history from './utils/history'
+
 
 import App from './App';
 
 import reportWebVitals from './reportWebVitals';
-import store from './store/index'
+import configureStore from './store/configureStore'
 
-import { Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 
+const store = configureStore({}, history)
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

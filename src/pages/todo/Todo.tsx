@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state: any) {
   return {
-    text: state.todo.text
+    text: state.todo.text,
+    router: state.router
   };
 }
 
@@ -20,7 +21,14 @@ interface PropType {
   text: [string, number]
 }
 class Todo extends Component<PropType> {
+  constructor(props:any, ctx:any) {
+    super(props, ctx)
+    console.log(props,ctx,'sdfsdf');
+    
+  }
   render() {
+    console.log(this.props,'props');
+    
     const { addTodo , text } = this.props
     return (
       <div>
